@@ -1,0 +1,10 @@
+<div class="test">
+  <app-result-chart></app-result-chart>
+</div>
+<div *ngIf="result.incorrectAnswers$ | async as incorrectAnswers">
+  <div *ngFor="let incorrect of incorrectAnswers">
+      <app-current-question-with-options [question]="incorrect"
+                                         [isReviewMode]="true">
+      </app-current-question-with-options>
+  </div>
+</div>
