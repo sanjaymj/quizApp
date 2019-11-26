@@ -24,7 +24,11 @@ export class QuizHomeComponent implements OnInit {
       console.log(val);
       this.questions = val;
     }); */
-    this.dataHandler.currentQuestion$.subscribe(val => this.currentQuestion = val);
+    this.dataHandler.currentQuestion$.subscribe(val => {
+      console.log('current question changed');
+      this.currentQuestion = val;
+      console.log('init home ', val);
+    });
   }
 
   public review() {
@@ -32,7 +36,11 @@ export class QuizHomeComponent implements OnInit {
   }
 
   goTo() {
-    this.result.review();
+    this.result.review1();
     this.router.navigate(['result']);
+  }
+
+  updateDB() {
+    this.dataHandler.updateDB();
   }
 }

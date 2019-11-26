@@ -1,5 +1,5 @@
 export class Question {
-    id: number;
+    index: number;
     problemStatement: String;
     options: String[];
     correctAnswer: number;

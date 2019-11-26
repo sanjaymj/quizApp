@@ -9,6 +9,9 @@ import { DataHandlerServiceService } from 'src/app/services/data-handler-service
 export class OptionsComponent implements OnInit {
 
   @Input()
+  index: number;
+
+  @Input()
   options: String[];
   @Input()
   userSelection: number;
@@ -23,6 +26,12 @@ export class OptionsComponent implements OnInit {
   userSelectedIndex: EventEmitter<number> = new EventEmitter<number>();
   constructor(private dataHandler: DataHandlerServiceService) {
     this.dataHandler.currentQuestion$.subscribe(val => this.userSelection = val.userSelection); 
+    this.dataHandler.currentUserSelection$.subscribe((val: number) => {
+      console.log('index is ', this.index);
+      if(val !== undefined) {
+        this.userSelection = val;
+      }
+    })
   }
 
   ngOnInit() {

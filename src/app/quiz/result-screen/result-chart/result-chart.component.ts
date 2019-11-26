@@ -49,7 +49,7 @@ ngOnInit () {
       this.correctAnswerCount = val.correctAnswerCount;
       this.totalNumberOfQuestions = val.correctAnswerCount + val.incorrectAnswerCount + val.unansweredCount;
       this.percentageScore = 100*(this.correctAnswerCount/this.totalNumberOfQuestions);
-      console.log('_____________ piechartData', this.pieChartData);
+      console.log('_____________ piechartData', this.percentageScore);
     });
 }
 

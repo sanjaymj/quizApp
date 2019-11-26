@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class QuestionComponent implements OnInit {
 
   @Input()
-  id: number;
+  index: number;
 
   @Input()
   problem: String;

@@ -18,10 +18,11 @@ export class CurrentQuestionWithOptionsComponent implements OnInit {
   constructor(private dataHandler: DataHandlerServiceService) { }
 
   ngOnInit() {
+    console.log('printing current question', this.question);
   }
 
   public updateUserSelection(count) {
-   this.dataHandler.updateUserSelection(this.question.id, count);
+   this.dataHandler.updateUserSelection(this.question.index, count);
     console.log('Updating user selection');
   }
 

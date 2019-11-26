@@ -1,8 +1,9 @@
-<app-question [id]="question.id"
+<app-question [index]="question.index"
               [problem]="question.problemStatement">
 </app-question>
 <app-options [options]="question.options"
              (userSelectedIndex)="updateUserSelection($event)"
              [isReviewMode]="isReviewMode"
-             [correctAnswer]="question.correctAnswer">
+             [correctAnswer]="question.correctAnswer"
+             [index]="question.index">
 </app-options>
