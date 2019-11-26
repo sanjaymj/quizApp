@@ -11,8 +11,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./quiz.home.component.css']
 })
 export class QuizHomeComponent implements OnInit {
-
-  //public questions: Question[];
   public currentQuestion: Question;
   public gameState = GameState;
   constructor(public dataHandler: DataHandlerServiceService,
@@ -20,23 +18,13 @@ export class QuizHomeComponent implements OnInit {
               public router: Router) { }
 
   ngOnInit() {
-   /*  this.dataHandler.question$.subscribe(val => {
-      console.log(val);
-      this.questions = val;
-    }); */
     this.dataHandler.currentQuestion$.subscribe(val => {
-      console.log('current question changed');
       this.currentQuestion = val;
-      console.log('init home ', val);
     });
   }
 
-  public review() {
-    
-  }
-
   goTo() {
-    this.result.review1();
+    this.result.review();
     this.router.navigate(['result']);
   }
 

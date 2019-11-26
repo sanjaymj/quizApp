@@ -27,7 +27,6 @@ export class OptionsComponent implements OnInit {
   constructor(private dataHandler: DataHandlerServiceService) {
     this.dataHandler.currentQuestion$.subscribe(val => this.userSelection = val.userSelection); 
     this.dataHandler.currentUserSelection$.subscribe((val: number) => {
-      console.log('index is ', this.index);
       if(val !== undefined) {
         this.userSelection = val;
       }
@@ -39,7 +38,6 @@ export class OptionsComponent implements OnInit {
   }
 
   public change() {
-    console.log('In cahange');
     this.userSelectedIndex.emit(this.userSelection);
   }
 }

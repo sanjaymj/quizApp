@@ -43,13 +43,11 @@ export class DataHandlerServiceService {
 
     this.http.get(this.answerUrl).subscribe((val: Map<number, number>) => {
       this.answers = val;
-      console.log('___answers', this.answers);
       this.currentUserSelection$$.next(this.answers[this.index]);
     })
   }
 
   public getCurrentQuestion() {
-     console.log('getCurrentQuestion()');
      this.currentQuestion = this.questions[this.index];
      return this.currentQuestion;
   }
@@ -83,12 +81,6 @@ export class DataHandlerServiceService {
     let user = new UserCOllection();
     user.index = 5;
     user.answers = this.answers;
-    console.log('__________in put');
-    //this.http.put('http://localhost:8080/answers/5ddac90299729c538a208bbe', user).subscribe();
-    
-    /* if (index === this.questions.length) {
-      this.gameState$$.next(GameState.ANSWERED_ALL_QUESTIONS);
-    } */
   }
 
   public start() {

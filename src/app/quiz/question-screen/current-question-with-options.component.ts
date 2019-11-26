@@ -7,7 +7,7 @@ import { DataHandlerServiceService } from '../../services/data-handler-service.s
   templateUrl: './current-question-with-options.component.html',
   styleUrls: ['./current-question-with-options.component.css']
 })
-export class CurrentQuestionWithOptionsComponent implements OnInit {
+export class CurrentQuestionWithOptionsComponent {
 
   @Input()
   question: Question;
@@ -17,13 +17,8 @@ export class CurrentQuestionWithOptionsComponent implements OnInit {
   
   constructor(private dataHandler: DataHandlerServiceService) { }
 
-  ngOnInit() {
-    console.log('printing current question', this.question);
-  }
-
   public updateUserSelection(count) {
-   this.dataHandler.updateUserSelection(this.question.index, count);
-    console.log('Updating user selection');
+    this.dataHandler.updateUserSelection(this.question.index, count);
   }
 
 }

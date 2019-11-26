@@ -6,15 +6,7 @@ import { ResultCalculationService } from '../../services/result-calculation.serv
   templateUrl: './result-screen.component.html',
   styleUrls: ['./result-screen.component.css']
 })
-export class ResultScreenComponent implements OnInit {
+export class ResultScreenComponent {
 
-  constructor(public result: ResultCalculationService) { }
-
-  ngOnInit() {
-    this.result.incorrectAnswers$.subscribe(val => {
-      console.log(val);
-    })
-  }
-
-  
+  constructor(public result: ResultCalculationService) { }  
 }
