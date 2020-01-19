@@ -1,0 +1,17 @@
+<div *ngIf="dataHandler.question$ | async as questions">
+    <div *ngFor="let question of questions">
+        <div *ngIf="question?.index === currentQuestion?.index">
+            <app-current-question-with-options [question]="question"></app-current-question-with-options>
+            <div *ngIf="dataHandler.gameState$ | async as state">
+                <div [ngSwitch]="state">
+                    <div *ngSwitchCase="gameState.PLAYING">
+                        <button mat-button color="primary" (click)="goToPreviousQuestion()">Previous</button>
+                        <button mat-button color="primary" (click)="goToNextQuestion()">Next</button>
+                        <button mat-button color="primary" (click)="finishTest()">Finish Test</button>
+                        <button mat-button color="primary" (click)="goToResultsPage()">View Results</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

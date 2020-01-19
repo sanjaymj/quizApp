@@ -1,0 +1,18 @@
+<div>
+    <canvas
+        baseChart
+        [chartType]="'doughnut'"
+        [datasets]="pieChartData"
+        [labels]="pieChartLabels"
+        [options]="pieChartOptions"
+        [legend]="true"
+        [colors]="pieChartColor"
+        (chartClick)="onChartClick($event)">
+    </canvas>
+</div>
+<div *ngIf="showPercentageScore" class="percent">
+    {{percentageScore}}%
+</div>
+<div *ngIf="!showPercentageScore" class="show-correct-answer-count">
+    {{correctAnswerCount}}/{{totalNumberOfQuestions}}
+</div>

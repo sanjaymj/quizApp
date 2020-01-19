@@ -1,0 +1,15 @@
+.percent {
+    font-size: 50px;
+    color: blue;
+    position: absolute;
+    top: 442px;
+    left: 741px;
+}
+
+.show-correct-answer-count{
+    font-size: 50px;
+    color: blue;
+    position: absolute;
+    top: 436px;
+    left: 725px;
+}
