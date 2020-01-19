@@ -33,8 +33,8 @@ export class DataHandlerServiceService {
 
   private url = 'http://localhost:8080/questions/';
   private answerUrl = 'http://localhost:8080/answers/user/5ddac90299729c538a208bbe';
+
   constructor(private http: HttpClient) {
-    console.log('I am in datahandler service');
     this.http.get(this.url).subscribe((val: Question[]) => {
       this.questions = val;
       this.questions$$.next(val);
@@ -55,10 +55,9 @@ export class DataHandlerServiceService {
   public incrementIndex() {
     this.index++;
     if (this.index <= this.questions.length) {
-      this.currentQuestion$$.next(this.questions[this.index-1]);
+      this.currentQuestion$$.next(this.questions[this.index - 1]);
       this.currentUserSelection$$.next(this.answers[this.index]);
-    }
-    else {
+    } else {
       this.index = this.questions.length - 1;
       console.log('invalid index');
     }
@@ -66,21 +65,17 @@ export class DataHandlerServiceService {
 
   public decrementIndex() {
     this.index--;
-      if (this.index >= 1) {
-          this.currentQuestion$$.next(this.questions[this.index-1]);
-          this.currentUserSelection$$.next(this.answers[this.index]);
-      }
-      else {
-        this.index = 1;
-      }
+    if (this.index >= 1) {
+        this.currentQuestion$$.next(this.questions[this.index - 1]);
+        this.currentUserSelection$$.next(this.answers[this.index]);
+    } else {
+      this.index = 1;
+    }
   }
 
   public updateUserSelection(index: number, value: number) {
-    this.questions[index-1].userSelection = value;
+    this.questions[index - 1].userSelection = value;
     this.answers[index] = value;
-    let user = new UserCOllection();
-    user.index = 5;
-    user.answers = this.answers;
   }
 
   public start() {
@@ -88,7 +83,7 @@ export class DataHandlerServiceService {
   }
 
   public updateDB() {
-    let user = new UserCOllection();
+    const user = new UserCOllection();
     user.index = 5;
     user.answers = this.answers;
     user.evaluatedAnswers = {

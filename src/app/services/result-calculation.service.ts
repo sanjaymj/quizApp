@@ -9,24 +9,24 @@ import { HttpClient } from '@angular/common/http';
     providedIn: 'root'
   })
   export class ResultCalculationService {
-    private reviewedAnswers$$: BehaviorSubject<AnswerTypeContainer> = new BehaviorSubject<AnswerTypeContainer>(new AnswerTypeContainer(0,0,0));
+    private reviewedAnswers$$: BehaviorSubject<AnswerTypeContainer> = new BehaviorSubject<AnswerTypeContainer>(new AnswerTypeContainer(0, 0, 0));
     public reviewedAnswers$: Observable<AnswerTypeContainer> = this.reviewedAnswers$$.asObservable();
 
     private incorrectAnswers$$: BehaviorSubject<Question[]> = new BehaviorSubject<Question[]>([]);
     public incorrectAnswers$: Observable<Question[]> = this.incorrectAnswers$$.asObservable();
-    
-    constructor(private datahandler: DataHandlerServiceService,private http: HttpClient) {
+
+    constructor(private datahandler: DataHandlerServiceService, private http: HttpClient) {
     }
 
     public review() {
         this.http.get('//localhost:8080/answers/result/5ddac90299729c538a208bbe').subscribe((val: Map<string, number>) => {
-            this.reviewedAnswers$$.next(new AnswerTypeContainer(val["correct"],
-            val["incorrect"],0));
+            this.reviewedAnswers$$.next(new AnswerTypeContainer(val['correct'],
+            val['incorrect'], 0));
         });
 
-        this.http.get('//localhost:8080/answers/result/incorrect/5ddac90299729c538a208bbe').subscribe((val:number[]) => {
+        this.http.get('//localhost:8080/answers/result/incorrect/5ddac90299729c538a208bbe').subscribe((val: number[]) => {
             const incorrectAnswerTemp: Question[] = [];
-            for(let i of val) {
+            for (const i of val) {
                 incorrectAnswerTemp.push(this.datahandler.questions[i]);
             }
             this.incorrectAnswers$$.next(incorrectAnswerTemp);

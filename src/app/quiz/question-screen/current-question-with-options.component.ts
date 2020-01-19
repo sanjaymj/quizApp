@@ -14,11 +14,10 @@ export class CurrentQuestionWithOptionsComponent {
 
   @Input()
   isReviewMode = false;
-  
+
   constructor(private dataHandler: DataHandlerServiceService) { }
 
-  public updateUserSelection(count) {
+  public updateUserSelection(count: number) {
     this.dataHandler.updateUserSelection(this.question.index, count);
   }
-
 }

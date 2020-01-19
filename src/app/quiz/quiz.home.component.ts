@@ -23,12 +23,20 @@ export class QuizHomeComponent implements OnInit {
     });
   }
 
-  goTo() {
+  public goToResultsPage() {
     this.result.review();
     this.router.navigate(['result']);
   }
 
-  updateDB() {
+  public finishTest() {
     this.dataHandler.updateDB();
+  }
+
+  public goToNextQuestion() {
+    this.dataHandler.incrementIndex();
+  }
+
+  public goToPreviousQuestion() {
+    this.dataHandler.decrementIndex();
   }
 }

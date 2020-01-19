@@ -11,8 +11,8 @@ export class QuestionComponent implements OnInit {
   index: number;
 
   @Input()
-  problem: String;
-  
+  problem: string;
+
   constructor() { }
 
   ngOnInit() {

@@ -8,5 +8,5 @@ import { ResultCalculationService } from '../../services/result-calculation.serv
 })
 export class ResultScreenComponent {
 
-  constructor(public result: ResultCalculationService) { }  
+  constructor(public result: ResultCalculationService) { }
 }

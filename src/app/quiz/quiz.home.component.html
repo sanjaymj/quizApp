@@ -5,10 +5,10 @@
             <div *ngIf="dataHandler.gameState$ | async as state">
                 <div [ngSwitch]="state">
                     <div *ngSwitchCase="gameState.PLAYING">
-                        <button mat-button color="primary" (click)="dataHandler.decrementIndex()">Previous</button>
-                        <button mat-button color="primary" (click)="dataHandler.incrementIndex()">Next</button>
-                        <button mat-button color="primary" (click)="goTo()">Finish Test</button>
-                        <button mat-button color="primary" (click)="updateDB()">DB update</button>
+                        <button mat-button color="primary" (click)="goToPreviousQuestion()">Previous</button>
+                        <button mat-button color="primary" (click)="goToNextQuestion()">Next</button>
+                        <button mat-button color="primary" (click)="finishTest()">Finish Test</button>
+                        <button mat-button color="primary" (click)="goToResultsPage()">View Results</button>
                     </div>
                 </div>
             </div>

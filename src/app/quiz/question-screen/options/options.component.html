@@ -3,7 +3,7 @@
   [disabled]="isReviewMode"
   aria-labelledby="example-radio-group-label"
   class="example-radio-group"
-  [(ngModel)]="userSelection" (ngModelChange)="change()">
+  [(ngModel)]="userSelection" (ngModelChange)="emitUserSelection()">
   <mat-radio-button class="example-radio-button" *ngFor="let option of options; let i=index" [value]="i">
     <div class="wrapper">
       <div>{{option}}</div>

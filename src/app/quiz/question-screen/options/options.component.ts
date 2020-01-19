@@ -6,13 +6,14 @@ import { DataHandlerServiceService } from 'src/app/services/data-handler-service
   templateUrl: './options.component.html',
   styleUrls: ['./options.component.css']
 })
-export class OptionsComponent implements OnInit {
+export class OptionsComponent {
 
   @Input()
   index: number;
 
   @Input()
-  options: String[];
+  options: string[];
+
   @Input()
   userSelection: number;
 
@@ -24,20 +25,17 @@ export class OptionsComponent implements OnInit {
 
   @Output()
   userSelectedIndex: EventEmitter<number> = new EventEmitter<number>();
+
   constructor(private dataHandler: DataHandlerServiceService) {
-    this.dataHandler.currentQuestion$.subscribe(val => this.userSelection = val.userSelection); 
+    this.dataHandler.currentQuestion$.subscribe(val => this.userSelection = val.userSelection);
     this.dataHandler.currentUserSelection$.subscribe((val: number) => {
-      if(val !== undefined) {
+      if (val !== undefined) {
         this.userSelection = val;
       }
-    })
+    });
   }
 
-  ngOnInit() {
-    
-  }
-
-  public change() {
+  public emitUserSelection() {
     this.userSelectedIndex.emit(this.userSelection);
   }
 }
