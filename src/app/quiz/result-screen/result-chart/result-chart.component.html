@@ -1,5 +1,6 @@
-<div>
+<div class="relative">
     <canvas
+        id="myChart"
         baseChart
         [chartType]="'doughnut'"
         [datasets]="pieChartData"
@@ -9,10 +10,10 @@
         [colors]="pieChartColor"
         (chartClick)="onChartClick($event)">
     </canvas>
-</div>
-<div *ngIf="showPercentageScore" class="percent">
-    {{percentageScore}}%
-</div>
-<div *ngIf="!showPercentageScore" class="show-correct-answer-count">
-    {{correctAnswerCount}}/{{totalNumberOfQuestions}}
+    <div *ngIf="showPercentageScore" class="absolute-center text-center">
+        {{percentageScore}}%
+    </div>
+    <div *ngIf="!showPercentageScore" class="absolute-center text-center">
+        {{correctAnswerCount}}/{{totalNumberOfQuestions}}
+    </div>
 </div>

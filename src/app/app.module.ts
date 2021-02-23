@@ -19,7 +19,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { BackendMock } from './services/backend.mock';
 import { ResultScreenComponent } from './quiz/result-screen/result-screen.component';
 import { ChartsModule } from 'ng2-charts';
-import { ResultChartComponent } from './quiz/result-screen/result-chart/result-chart.component'
+import { ResultChartComponent } from './quiz/result-screen/result-chart/result-chart.component';
+import { QuizCategoryListComponent } from './home/quiz-category-list/quiz-category-list.component';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
+import { SignUpComponent } from './auth/sign-up/sign-up.component'
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthGuardService } from './services/auth-guard.service';
+import { AuthHandlerService } from './services/auth-handler.service';
+import { CreateQuizComponent } from './home/create-quiz/create-quiz.component';
+import { AddQuestionsComponent } from './home/create-quiz/add-questions/add-questions.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +41,11 @@ import { ResultChartComponent } from './quiz/result-screen/result-chart/result-c
     OptionsComponent,
     ResultScreenComponent,
     ResultChartComponent,
+    QuizCategoryListComponent,
+    SignInComponent,
+    SignUpComponent,
+    CreateQuizComponent,
+    AddQuestionsComponent,
   ],
   imports: [
     FormsModule,
@@ -41,9 +54,10 @@ import { ResultChartComponent } from './quiz/result-screen/result-chart/result-c
     RoutingModule,
     MaterialModule,
     HttpClientModule,
-    ChartsModule
+    ChartsModule,
+    ReactiveFormsModule
   ],
-  providers: [DataHandlerServiceService, ResultCalculationService],
+  providers: [DataHandlerServiceService, ResultCalculationService, AuthHandlerService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

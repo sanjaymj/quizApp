@@ -1,14 +1,20 @@
 <mat-toolbar color="primary">
     <div class="wrapper">
-        <div class="home">
-            <a routerLink="/home">JAVA OCA by practise</a>
-        </div>
-        <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
-            <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-                <li class=navigation-items-child>
-                    <a routerLink="/contribute">contribute</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+      <div *ngIf="store.hideStandardNavBar$| async as test">
+        <div [ngSwitch]="test">
+          <div *ngSwitchCase="navbarState.DEFAULT">
+            <div class="home">
+              <a routerLink="/home">The best quiz app!!</a>
+              <a (click)="signOut()">Sign Out</a>
+            </div>
+          </div>
+          <div *ngSwitchCase="navbarState.LOGIN">
+            <a routerLink="/register">Register</a>
+          </div>
+          <div *ngSwitchCase="navbarState.REGISTER">
+            <a routerLink="/login">Login</a>
+          </div>
+          </div>
+          </div>
+          </div>
   </mat-toolbar>

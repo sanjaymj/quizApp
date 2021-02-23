@@ -13,3 +13,20 @@
     top: 436px;
     left: 725px;
 }
+
+.relative {
+  position: relative;
+}
+
+.absolute-center {
+  font-size: 50px;
+    color: blue;
+  position:absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.text-center{
+  text-align: center;
+}

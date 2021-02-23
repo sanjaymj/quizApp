@@ -27,6 +27,9 @@ mat-toolbar{
 
 .home {
     padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100vH;
 }
 
 /* .navigation-items-child {

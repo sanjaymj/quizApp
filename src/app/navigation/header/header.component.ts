@@ -1,4 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NavbarState } from 'src/app/models/navbar.state.model';
+import { AuthHandlerService } from 'src/app/services/auth-handler.service';
+import { Store } from 'src/app/services/store';
 
 @Component({
   selector: 'app-header',
@@ -7,16 +11,28 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  @Output() 
+  @Output()
   public sidenavToggle = new EventEmitter();
 
-  constructor() { }
+  public navbarState = NavbarState;
+  constructor(private router: Router, private route: ActivatedRoute, public store: Store, private auth: AuthHandlerService) {
+    this.store.hideStandardNavBar$.subscribe(val => {
+      console.log("changed");
+      console.log(val);
+    });
+   }
 
   ngOnInit() {
   }
 
   public onToggleSidenav() {
     this.sidenavToggle.emit();
+  }
+
+  public signOut() {
+    this.auth.isSignedIn = false;
+    localStorage.setItem('quizUserLoggedIn', "false");
+    this.router.navigateByUrl("/login");
   }
 
 }

@@ -27,7 +27,10 @@ export class OptionsComponent {
   userSelectedIndex: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(private dataHandler: DataHandlerServiceService) {
-    this.dataHandler.currentQuestion$.subscribe(val => this.userSelection = val.userSelection);
+
+    this.dataHandler.currentQuestion$.subscribe(val => {
+      this.userSelection = val.userSelection;
+    });
     this.dataHandler.currentUserSelection$.subscribe((val: number) => {
       if (val !== undefined) {
         this.userSelection = val;

@@ -4,11 +4,14 @@
             <app-current-question-with-options [question]="question"></app-current-question-with-options>
             <div *ngIf="dataHandler.gameState$ | async as state">
                 <div [ngSwitch]="state">
-                    <div *ngSwitchCase="gameState.PLAYING">
-                        <button mat-button color="primary" (click)="goToPreviousQuestion()">Previous</button>
-                        <button mat-button color="primary" (click)="goToNextQuestion()">Next</button>
+                    <div *ngSwitchDefault>
+                      <button mat-button [disabled]="question?.index===1" color="primary" (click)="goToPreviousQuestion()">Previous</button>
+                      <button mat-button [disabled]="question?.index===questions.length" color="primary"
+                        (click)="goToNextQuestion()">Next</button>
                         <button mat-button color="primary" (click)="finishTest()">Finish Test</button>
-                        <button mat-button color="primary" (click)="goToResultsPage()">View Results</button>
+                    </div>
+                    <div *ngSwitchCase="gameState.ANSWERED_ALL_QUESTIONS">
+                      <button mat-button color="primary" (click)="goToResultsPage()">View Results</button>
                     </div>
                 </div>
             </div>

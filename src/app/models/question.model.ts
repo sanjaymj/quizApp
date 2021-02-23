@@ -4,4 +4,6 @@ export class Question {
     options: String[];
     correctAnswer: number;
     userSelection?: number;
+    questionCategory: String;
+    questionId: String;
 }

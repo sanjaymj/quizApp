@@ -3,7 +3,7 @@ import { Question } from '../models/question.model';
 import { GameState } from '../models/game.state.model';
 import { DataHandlerServiceService } from '../services/data-handler-service.service';
 import { ResultCalculationService } from '../services/result-calculation.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz-home',
@@ -13,23 +13,36 @@ import { Router } from '@angular/router';
 export class QuizHomeComponent implements OnInit {
   public currentQuestion: Question;
   public gameState = GameState;
+  private category: String;
+  private index: String;
+
   constructor(public dataHandler: DataHandlerServiceService,
               private result: ResultCalculationService,
-              public router: Router) { }
+              public router: Router,
+              private route: ActivatedRoute) {
+                this.route.queryParams.subscribe(params => {
+                  this.dataHandler.getAllQuestionsbyCategories(params['category']);
+              });
+               }
 
   ngOnInit() {
+    console.log("in quiz home");
     this.dataHandler.currentQuestion$.subscribe(val => {
-      this.currentQuestion = val;
+    this.currentQuestion = val;
     });
   }
 
   public goToResultsPage() {
-    this.result.review();
+    this.result.review(this.index, this.category);
     this.router.navigate(['result']);
   }
 
   public finishTest() {
-    this.dataHandler.updateDB();
+    this.dataHandler.updateDB().then(val => {
+      this.category = val['category'];
+      this.index = val['index'];
+    })
+    .catch(val => console.log(val));
   }
 
   public goToNextQuestion() {

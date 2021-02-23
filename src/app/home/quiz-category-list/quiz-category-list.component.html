@@ -1,0 +1,6 @@
+
+<mat-nav-list>
+  <a routerLink="/quiz" [queryParams]="{category: pizza}" mat-list-item href *ngFor="let pizza of this.dataHandler.questionCategories$ | async; index as i">
+    {{ i + 1 }}. {{ pizza }}
+  </a>
+  <mat-nav-list>

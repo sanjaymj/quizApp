@@ -1,0 +1,38 @@
+{
+  "questions": [
+    {
+      "index": "1",
+      "problemStatement": "I am a dummy question 1",
+      "options": [
+        "i am option a1",
+        "I am option b1",
+        "I am option c1",
+        "I am option d1"
+      ],
+      "correctAnswer": "0"
+    },
+    {
+      "index": "2",
+      "problemStatement": "I am a dummy question 2",
+      "options": [
+        "i am option a2",
+        "I am option b2",
+        "I am option c2",
+        "I am option d2"
+      ],
+      "correctAnswer": "1"
+    }
+  ],
+  "answers": [
+    {
+      "id": "1",
+      "questionIndex": "1",
+      "userSelection": 1
+    }
+  ],
+  "results": {
+      "correct": "1",
+      "incorrect": "1"
+  }
+
+}

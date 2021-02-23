@@ -1,0 +1,10 @@
+<div class="container p-4">
+  <form *ngIf="!showQuestionnaire" [formGroup]="quizNameForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-group">
+      <input type="name" class="form-control" formControlName="name" placeholder="Enter quiz name">
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!quizNameForm.valid">Add questions</button>
+  </form>
+
+  <app-add-questions *ngIf="showQuestionnaire" [quizName]="quizName"></app-add-questions>
+</div>

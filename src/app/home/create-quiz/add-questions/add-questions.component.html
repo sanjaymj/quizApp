@@ -1,0 +1,59 @@
+<div class="container p-2">
+  Enter question {{questionNumber}}
+
+  <form class="p-2" [formGroup]="createQuizForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-group">
+      <input type="name" class="form-control" formControlName="question" placeholder="question">
+    </div>
+
+    <div class="form-group">
+      <input type="name" class="form-control" formControlName="option1" placeholder="option1">
+    </div>
+
+    <div class="form-group">
+      <input type="name" class="form-control" formControlName="option2" placeholder="option2">
+    </div>
+
+    <div class="form-group">
+      <input type="name" class="form-control" formControlName="option3" placeholder="option3">
+    </div>
+
+    <div class="form-group">
+      <input type="name" class="form-control" formControlName="option4" placeholder="option4">
+    </div>
+
+    <div class="form-group">
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" class="custom-control-input" value="0" id="option1" formControlName="correctAnswer"
+          mdbInput>
+        <label class="custom-control-label" for="option1">option1</label>
+      </div>
+
+      <!-- Default inline 2-->
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" class="custom-control-input" value="1" id="option2" formControlName="correctAnswer"
+          mdbInput>
+        <label class="custom-control-label" for="option2">option2</label>
+      </div>
+
+      <!-- Default inline 3-->
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" class="custom-control-input" value="2" id="option3" formControlName="correctAnswer"
+          mdbInput>
+        <label class="custom-control-label" for="option3">option3</label>
+      </div>
+
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" class="custom-control-input" value="3" id="option4" formControlName="correctAnswer"
+          mdbInput>
+        <label class="custom-control-label" for="option4">option4</label>
+      </div>
+    </div>
+
+    <button (click)="onNext()" class="btn btn-primary mr-4" [disabled]="!createQuizForm.valid">Next</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!createQuizForm.valid">Submit</button>
+  </form>
+
+
+
+</div>
