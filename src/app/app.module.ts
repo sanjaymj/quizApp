@@ -47,7 +47,7 @@ import { AlertBoxComponent } from './widgets/alert-box/alert-box.component';
     SignUpComponent,
     CreateQuizComponent,
     AddQuestionsComponent,
-    AlertBoxComponent,
+    AlertBoxComponent
   ],
   imports: [
     FormsModule,
@@ -59,6 +59,7 @@ import { AlertBoxComponent } from './widgets/alert-box/alert-box.component';
     ChartsModule,
     ReactiveFormsModule
   ],
+  entryComponents: [AlertBoxComponent],
   providers: [DataHandlerServiceService, ResultCalculationService, AuthHandlerService, AuthGuardService],
   bootstrap: [AppComponent]
 })

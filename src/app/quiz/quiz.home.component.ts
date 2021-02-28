@@ -4,7 +4,9 @@ import { GameState } from '../models/game.state.model';
 import { DataHandlerServiceService } from '../services/data-handler-service.service';
 import { ResultCalculationService } from '../services/result-calculation.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { MatDialog } from '@angular/material/dialog';
+import { AlertBoxComponent } from '../widgets/alert-box/alert-box.component';
+import { finalize, take } from 'rxjs/operators';
 @Component({
   selector: 'app-quiz-home',
   templateUrl: './quiz.home.component.html',
@@ -19,7 +21,8 @@ export class QuizHomeComponent implements OnInit {
   constructor(public dataHandler: DataHandlerServiceService,
               private result: ResultCalculationService,
               public router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              public dialog: MatDialog) {
                 this.route.queryParams.subscribe(params => {
                   this.dataHandler.getAllQuestionsbyCategories(params['category']);
               });
@@ -33,16 +36,26 @@ export class QuizHomeComponent implements OnInit {
   }
 
   public goToResultsPage() {
-    this.result.review(this.index, this.category);
-    this.router.navigate(['result']);
+      this.result.review(this.index, this.category);
+      this.router.navigate(['result']);
   }
 
   public finishTest() {
-    this.dataHandler.updateDB().then(val => {
-      this.category = val['category'];
-      this.index = val['index'];
+    const dialogRef = this.dialog.open(AlertBoxComponent, {
+      width: '250px',
+    });
+    dialogRef.componentInstance.textContent = "Are you sure, you want to submit ?";
+
+    dialogRef.componentInstance.completion.pipe(take(1), finalize(() => dialogRef.close())).subscribe(val => {
+      if (val) {
+        this.dataHandler.updateDB().then(val => {
+          this.category = val['category'];
+          this.index = val['index'];
+        })
+        .catch(val => console.log(val));
+      }
     })
-    .catch(val => console.log(val));
+
   }
 
   public goToNextQuestion() {
