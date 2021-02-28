@@ -29,6 +29,7 @@ import { AuthHandlerService } from './services/auth-handler.service';
 import { CreateQuizComponent } from './home/create-quiz/create-quiz.component';
 import { AddQuestionsComponent } from './home/create-quiz/add-questions/add-questions.component';
 import { AlertBoxComponent } from './widgets/alert-box/alert-box.component';
+import { LoadingSpinnerComponent } from './widgets/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { AlertBoxComponent } from './widgets/alert-box/alert-box.component';
     SignUpComponent,
     CreateQuizComponent,
     AddQuestionsComponent,
-    AlertBoxComponent
+    AlertBoxComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     FormsModule,

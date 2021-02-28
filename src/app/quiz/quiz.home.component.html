@@ -1,6 +1,7 @@
 <div *ngIf="dataHandler.question$ | async as questions">
     <div *ngFor="let question of questions">
         <div *ngIf="question?.index === currentQuestion?.index">
+            <app-loading-spinner></app-loading-spinner>
             <app-current-question-with-options [question]="question"></app-current-question-with-options>
             <div *ngIf="dataHandler.gameState$ | async as state">
                 <div [ngSwitch]="state">
