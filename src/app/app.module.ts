@@ -28,6 +28,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { AuthHandlerService } from './services/auth-handler.service';
 import { CreateQuizComponent } from './home/create-quiz/create-quiz.component';
 import { AddQuestionsComponent } from './home/create-quiz/add-questions/add-questions.component';
+import { AlertBoxComponent } from './widgets/alert-box/alert-box.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { AddQuestionsComponent } from './home/create-quiz/add-questions/add-ques
     SignUpComponent,
     CreateQuizComponent,
     AddQuestionsComponent,
+    AlertBoxComponent
   ],
   imports: [
     FormsModule,
@@ -57,6 +59,7 @@ import { AddQuestionsComponent } from './home/create-quiz/add-questions/add-ques
     ChartsModule,
     ReactiveFormsModule
   ],
+  entryComponents: [AlertBoxComponent],
   providers: [DataHandlerServiceService, ResultCalculationService, AuthHandlerService, AuthGuardService],
   bootstrap: [AppComponent]
 })

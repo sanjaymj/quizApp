@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DataHandlerServiceService } from 'src/app/services/data-handler-service.service';
-
+import { AlertBoxComponent } from 'src/app/widgets/alert-box/alert-box.component';
+import {take, finalize} from 'rxjs/operators';
 interface QuestionDTO {
   problemStatement: string;
   options: string[];
@@ -23,7 +25,7 @@ export class AddQuestionsComponent implements OnInit {
   public questionNumber: number = 0;
   private questions: QuestionDTO[] = [];
   private currentQuestion: QuestionDTO;
-  constructor(private router: Router, public dataHandler: DataHandlerServiceService) {
+  constructor(private router: Router, public dataHandler: DataHandlerServiceService, public dialog: MatDialog) {
 
     this.createQuizForm = new FormGroup({
       question: new FormControl('', [Validators.required]),
@@ -40,9 +42,20 @@ export class AddQuestionsComponent implements OnInit {
   }
 
   onSubmit() {
-    this.addCurrentQuestionToCollection();
+    const dialogRef = this.dialog.open(AlertBoxComponent, {
+      width: '250px',
+    });
+    dialogRef.componentInstance.textContent = "Are you sure, you want to submit ?";
+
+    dialogRef.componentInstance.completion.pipe(take(1), finalize(() => dialogRef.close())).subscribe(val => {
+      if (val) {
+        this.addCurrentQuestionToCollection();
+        this.dataHandler.createNewQuiz(this.questions);
+      }
+    })
+    /*this.addCurrentQuestionToCollection();
     console.log(this.questions);
-    this.dataHandler.createNewQuiz(this.questions);
+    this.dataHandler.createNewQuiz(this.questions);*/
   }
 
   onNext() {

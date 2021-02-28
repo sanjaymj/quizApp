@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatTabsModule, MatSidenavModule, MatToolbarModule, MatIconModule, MatButtonModule, MatListModule, MatMenuModule } from '@angular/material';
+import { MatTabsModule, MatSidenavModule, MatToolbarModule, MatIconModule, MatButtonModule, MatListModule, MatMenuModule, MatDialogModule } from '@angular/material';
 import {MatRadioModule} from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
 
@@ -16,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     MatTabsModule,
     MatSidenavModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDialogModule
   ],
   exports: [
     MatMenuModule,
@@ -26,7 +27,8 @@ import { FormsModule } from '@angular/forms';
     MatToolbarModule,
     MatTabsModule,
     MatSidenavModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDialogModule
   ],
 })
 export class MaterialModule { }
