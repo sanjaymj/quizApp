@@ -16,7 +16,6 @@ import { QuestionComponent } from './quiz/question-screen/question/question.comp
 import { OptionsComponent } from './quiz/question-screen/options/options.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { BackendMock } from './services/backend.mock';
 import { ResultScreenComponent } from './quiz/result-screen/result-screen.component';
 import { ChartsModule } from 'ng2-charts';
 import { ResultChartComponent } from './quiz/result-screen/result-chart/result-chart.component';

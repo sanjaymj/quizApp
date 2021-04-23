@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class AuthHandlerService {
   private authUrl = environment.authApi + 'api/auth/';
 
-  private _isSignedIn: boolean = false;
+  private static LOCAL_STORAGE_USER_LOGGED_IN_KEY = "quizUserLoggedIn";
 
   constructor(private http: HttpClient) {}
 
@@ -25,18 +25,18 @@ export class AuthHandlerService {
     const val = {
       "email": email,
       "username": username,
-      "password": password
+      "password": password,
+      "roles": ["user"]
   };
     return this.http.post(this.authUrl + 'signup', val).toPromise();
   }
 
   public set isSignedIn(val: boolean) {
-    this._isSignedIn = val;
-    localStorage.setItem('quizUserLoggedIn', "true");
+    localStorage.setItem(AuthHandlerService.LOCAL_STORAGE_USER_LOGGED_IN_KEY, "true");
   }
 
   public get isSignedIn() {
-    return JSON.parse(localStorage.getItem('quizUserLoggedIn')) === true;
+    return JSON.parse(localStorage.getItem(AuthHandlerService.LOCAL_STORAGE_USER_LOGGED_IN_KEY)) === true;
   }
 
 }

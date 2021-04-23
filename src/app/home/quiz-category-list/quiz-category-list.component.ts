@@ -6,16 +6,8 @@ import { DataHandlerServiceService } from 'src/app/services/data-handler-service
   templateUrl: './quiz-category-list.component.html',
   styleUrls: ['./quiz-category-list.component.css']
 })
-export class QuizCategoryListComponent implements OnInit {
+export class QuizCategoryListComponent {
 
-  constructor(public dataHandler: DataHandlerServiceService) {
-    console.log("again here")
-   }
-
-  ngOnInit() {
-    this.dataHandler.questionCategories$.subscribe(val => {
-      console.log(val);
-    });
-  }
+  constructor(public dataHandler: DataHandlerServiceService) {}
 
 }

@@ -1,6 +1,5 @@
 import { Answer, QuestionAnswerMapper } from './../models/answer.model';
 import { Injectable } from '@angular/core';
-import { BackendMock } from './backend.mock';
 import { Question } from '../models/question.model';
 import { BehaviorSubject, Observable, Observer, Subject } from 'rxjs';
 import { GameState } from '../models/game.state.model';
@@ -43,7 +42,6 @@ export class DataHandlerServiceService {
 
   constructor(private http: HttpClient) {
     this.answers.id = 10;
-    console.log("in constructor");
     this.answers.questionAnswerMapper = [];
 
     /*this.http.get(this.url).subscribe((val: Question[]) => {
@@ -52,10 +50,7 @@ export class DataHandlerServiceService {
       this.currentQuestion$$.next(this.questions[0]);
     });*/
 
-    this.http.get(this.categoryUrl).subscribe((val: String[])=> {
-      console.log("get category")
-      this.questionCategories$$.next(val);
-    });
+    this.http.get(this.categoryUrl).subscribe((val: String[]) => this.questionCategories$$.next(val));
   }
 
   public getCurrentQuestion() {
@@ -65,14 +60,11 @@ export class DataHandlerServiceService {
 
   public incrementIndex() {
     this.index++;
-    console.log(this.index)
     if (this.index <= this.questions.length) {
       this.currentQuestion$$.next(this.questions[this.index - 1]);
-      console.log(this.answers.questionAnswerMapper);
-      console.log(this.questions)
+
       const val = this.answers.questionAnswerMapper.findIndex(val => val.questionNumber === this.questions[this.index-1].questionId);
-      console.log("!!!!!");
-      console.log(val);
+
       if (val !== -1) {
         this.currentUserSelection$$.next(this.answers.questionAnswerMapper[val].userSelection);
       } else {
@@ -80,7 +72,6 @@ export class DataHandlerServiceService {
       }
     } else {
       this.index = this.questions.length - 1;
-      console.log('invalid index');
     }
   }
 
@@ -89,8 +80,7 @@ export class DataHandlerServiceService {
     if (this.index >= 1) {
       this.currentQuestion$$.next(this.questions[this.index - 1]);
       const val = this.answers.questionAnswerMapper.findIndex(val => val.questionNumber === this.questions[this.index-1].questionId);
-      console.log("!!!!!");
-      console.log(val);
+
       if (val !== -1) {
         this.currentUserSelection$$.next(this.answers.questionAnswerMapper[val].userSelection);
       } else {
@@ -103,8 +93,7 @@ export class DataHandlerServiceService {
   }
 
   public updateUserSelection(index: number, value: number, questionId: String) {
-    console.log(index);
-    console.log(value);
+
     this.questions[index - 1].userSelection = value;
     const questionAnswerMapper: QuestionAnswerMapper = {
       questionNumber: questionId,
@@ -146,34 +135,29 @@ export class DataHandlerServiceService {
     const dto = new Map<String, number>();
 
     this.answers.questionAnswerMapper.forEach((val) => {
-      console.log(val.questionNumber)
       dto.set(val.questionNumber, val.userSelection);
     })
 
-    console.log(JSON.stringify(mapToObj(dto)));
-    const val = {
+    const valToUpdateInDB = {
       "category": this.currentCategory,
       "questionAnswerMapper": mapToObj(dto)
   };
 
-  console.log(val);
 
   this.gameState$$.next(GameState.ANSWERED_ALL_QUESTIONS);
-  return this.http.post(this.answerUrl, val).toPromise();
+  return this.http.post(this.answerUrl, valToUpdateInDB).toPromise();
   }
 
   public getAllQuestionsbyCategories(category: String) {
     this.currentCategory = category;
     let tempCount = 1;
      this.http.get(this.url + "/category/" +category).subscribe((val: Question[]) => {
-       console.log(val);
-      this.questions = val.map(item => {
+       this.questions = val.map(item => {
         item.questionId = item.index.toString();
         item.index = tempCount++;
         return item;
       });
       this.questions$$.next(val);
-      console.log(this.questions);
       this.currentQuestion$$.next(this.questions[0]);
     });
   }
