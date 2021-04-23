@@ -18,7 +18,6 @@ export class CurrentQuestionWithOptionsComponent {
   constructor(private dataHandler: DataHandlerServiceService) { }
 
   public updateUserSelection(count: number) {
-    console.log(this.question);
     this.dataHandler.updateUserSelection(this.question.index, count, this.question.questionId);
   }
 }

@@ -1,6 +1,7 @@
 
 <mat-nav-list>
-  <a routerLink="/quiz" [queryParams]="{category: pizza}" mat-list-item href *ngFor="let pizza of this.dataHandler.questionCategories$ | async; index as i">
-    {{ i + 1 }}. {{ pizza }}
+  <a routerLink="/quiz" [queryParams]="{category: questionCategory}" mat-list-item href
+    *ngFor="let questionCategory of this.dataHandler.questionCategories$ | async; index as i">
+    {{ i + 1 }}. {{ questionCategory }}
   </a>
   <mat-nav-list>

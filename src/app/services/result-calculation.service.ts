@@ -6,6 +6,7 @@ import { AnswerTypeContainer } from '../models/answer.type.model';
 import { HttpClient } from '@angular/common/http';
 import { GameState } from '../models/game.state.model';
 import { environment } from 'src/environments/environment';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -23,14 +24,13 @@ import { environment } from 'src/environments/environment';
     private resultsUrl = environment.questionsApi + '/results/';
 
     public review(index: String, category: String) {
-      console.log(index, category);
-        this.http.get(this.resultsUrl +'index/'+index+'/category/'+category+'/').subscribe((val: Map<string, number>) => {
-          console.log(val);
+        return this.http.get(this.resultsUrl +'index/'+index+'/category/'+category+'/').pipe(
+          tap(val => {
+            this.dataHandler.updateGameState(GameState.IDLE);
             this.reviewedAnswers$$.next(new AnswerTypeContainer(parseInt(val['correctAnswers']),
             parseInt(val['incorrectAnswers']), parseInt(val['unansweredQuestions'])));
-        });
-
-        this.dataHandler.updateGameState(GameState.IDLE);
+          })
+        ).toPromise();
 
     }
   }

@@ -5,17 +5,12 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.css']
 })
-export class QuestionComponent implements OnInit {
+export class QuestionComponent{
 
   @Input()
   index: number;
 
   @Input()
   problem: string;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
 }

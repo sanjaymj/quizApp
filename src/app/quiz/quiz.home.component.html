@@ -1,20 +1,23 @@
 <div *ngIf="dataHandler.question$ | async as questions">
     <div *ngFor="let question of questions">
         <div *ngIf="question?.index === currentQuestion?.index">
-            <app-current-question-with-options [question]="question"></app-current-question-with-options>
-            <div *ngIf="dataHandler.gameState$ | async as state">
-                <div [ngSwitch]="state">
-                    <div *ngSwitchDefault>
-                      <button mat-button [disabled]="question?.index===1" color="primary" (click)="goToPreviousQuestion()">Previous</button>
-                      <button mat-button [disabled]="question?.index===questions.length" color="primary"
-                        (click)="goToNextQuestion()">Next</button>
-                        <button mat-button color="primary" (click)="finishTest()">Finish Test</button>
-                    </div>
-                    <div *ngSwitchCase="gameState.ANSWERED_ALL_QUESTIONS">
-                      <button mat-button color="primary" (click)="goToResultsPage()">View Results</button>
-                    </div>
-                </div>
-            </div>
+          <div *ngIf="isLoading$ | async as loading">
+            <app-loading-spinner [isLoading]="loading"></app-loading-spinner>
+          </div>
+          <app-current-question-with-options [question]="question"></app-current-question-with-options>
+          <div *ngIf="dataHandler.gameState$ | async as state">
+              <div [ngSwitch]="state">
+                  <div *ngSwitchDefault>
+                    <button mat-button [disabled]="question?.index===1" color="primary" (click)="goToPreviousQuestion()">Previous</button>
+                    <button mat-button [disabled]="question?.index===questions.length" color="primary"
+                      (click)="goToNextQuestion()">Next</button>
+                      <button mat-button color="primary" (click)="finishTest()">Finish Test</button>
+                  </div>
+                  <div *ngSwitchCase="gameState.ANSWERED_ALL_QUESTIONS">
+                    <button mat-button color="primary" (click)="goToResultsPage()">View Results</button>
+                  </div>
+              </div>
+          </div>
         </div>
     </div>
 </div>

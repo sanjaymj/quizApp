@@ -9,21 +9,13 @@ import { Store } from 'src/app/services/store';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
   @Output()
   public sidenavToggle = new EventEmitter();
 
   public navbarState = NavbarState;
-  constructor(private router: Router, private route: ActivatedRoute, public store: Store, private auth: AuthHandlerService) {
-    this.store.hideStandardNavBar$.subscribe(val => {
-      console.log("changed");
-      console.log(val);
-    });
-   }
-
-  ngOnInit() {
-  }
+  constructor(private router: Router, private route: ActivatedRoute, public store: Store, private auth: AuthHandlerService) {}
 
   public onToggleSidenav() {
     this.sidenavToggle.emit();

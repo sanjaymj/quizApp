@@ -16,7 +16,6 @@ import { QuestionComponent } from './quiz/question-screen/question/question.comp
 import { OptionsComponent } from './quiz/question-screen/options/options.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { BackendMock } from './services/backend.mock';
 import { ResultScreenComponent } from './quiz/result-screen/result-screen.component';
 import { ChartsModule } from 'ng2-charts';
 import { ResultChartComponent } from './quiz/result-screen/result-chart/result-chart.component';
@@ -28,6 +27,8 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { AuthHandlerService } from './services/auth-handler.service';
 import { CreateQuizComponent } from './home/create-quiz/create-quiz.component';
 import { AddQuestionsComponent } from './home/create-quiz/add-questions/add-questions.component';
+import { AlertBoxComponent } from './widgets/alert-box/alert-box.component';
+import { LoadingSpinnerComponent } from './widgets/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,8 @@ import { AddQuestionsComponent } from './home/create-quiz/add-questions/add-ques
     SignUpComponent,
     CreateQuizComponent,
     AddQuestionsComponent,
+    AlertBoxComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     FormsModule,
@@ -57,6 +60,7 @@ import { AddQuestionsComponent } from './home/create-quiz/add-questions/add-ques
     ChartsModule,
     ReactiveFormsModule
   ],
+  entryComponents: [AlertBoxComponent],
   providers: [DataHandlerServiceService, ResultCalculationService, AuthHandlerService, AuthGuardService],
   bootstrap: [AppComponent]
 })
